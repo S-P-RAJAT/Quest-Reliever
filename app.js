@@ -17,9 +17,15 @@ app.set('view engine', 'hbs');
 app.get("/:name"+".css",function(req, res){
     res.sendFile(__dirname + "/public/stylesheets/"+req.params["name"]+".css");
 });
+
 app.get("/:name2"+".js",function(req, res){
     res.sendFile(__dirname + "/public/javascripts/"+req.params["name2"]+".js");
 });
+
+app.get("/:name"+".jpg",function(req, res){
+    res.sendFile(__dirname + "/public/images/"+req.params["name"]+".jpg");
+});
+
 var title = "Quest Reliever";
 app.get("/",function(req, res){
     res.render("index",{title: title})
