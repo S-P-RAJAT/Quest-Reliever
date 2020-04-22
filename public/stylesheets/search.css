@@ -1,0 +1,20 @@
+.home a{
+	color:#A72608;
+}
+.home{
+	padding: 10px;
+	background-color:rgba(245, 0, 0, 0.3);
+	color:blue;
+}
+.result{
+	padding: 2%;
+	border: red solid 2px;
+	color:blue;
+}
+.container{
+	margin:2%;
+}
+img{
+	padding-top:5%;
+	
+}

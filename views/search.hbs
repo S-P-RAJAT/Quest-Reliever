@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="search.css">
+<h1>{{title}}</h1>
+
+<div class = "home">
+<a href = "/" >Home</a>
+</div>
+<div class = "container">
+{{!--{{#if anyArray}}--}}
+
+{{#each data}}
+{{#each this}}
+<p class= "result">
+<img src="{{Poster}}"><br>
+Title: <a href="/search/{{Title}}">{{Title}}</a><br>
+Year: {{Year}}<br>
+Type: {{Type}}<br>
+{{#ifvalid Poster}}
+{{/ifvalid}}
+<br>
+</p>
+{{/each}}
+{{/each}}
+{{!--{{/if}}--}}
+</div>

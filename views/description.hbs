@@ -1,0 +1,32 @@
+<h1>{{title}}</h1>
+
+<div>
+<a href = "/" >Home</a>
+</div>
+<p>
+{{!--{{#if anyArray}}--}}
+{{#if Poster}}
+{{#ifvalid Poster}}
+<img src="{{Poster}}"><br>
+{{/ifvalid}}
+{{/if}}
+{{#each data}}
+
+{{#if this}}
+{{#ifvalid this}}
+{{@key}}  :  {{this}}<br>
+{{/ifvalid}}
+{{/if}}
+{{/each}}<br>
+<strong>Ratings:</strong><br>
+Source<br>
+{{#each Ratings}}
+{{#each this}}
+{{#if this}}
+{{this}} 
+{{/if}}
+{{/each}}<br>
+{{/each}}
+
+{{!--{{/if}}--}}
+</p>
