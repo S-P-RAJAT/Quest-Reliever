@@ -14,6 +14,7 @@ body{
 }
 .container{
   margin-left: 2%;
+  height: 70vh;
 }
 .search-box{
   height: 2em;
@@ -34,9 +35,10 @@ body{
 #submit-button{
   margin-left: 2%;
   font-size: 1em;
+  padding: 7px;
   border-radius: 20px;
-  border: black solid 3px;
-  background-color: white;
+  border: none;
+  background-color: rgba(4, 138, 191,0.2);
   color: black;
   outline: none;
   -webkit-transition-duration: 0.1s; /* Safari */
@@ -46,8 +48,9 @@ body{
   margin-left: 2%;
   font-size: 1em;
   border-radius: 20px;
-  border: black solid 3px;
-  color: black;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgba(4, 138, 191,0.01);
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 

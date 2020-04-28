@@ -1,10 +1,29 @@
-.home a{
-	color:#A72608;
+.navbar{
+	display:flex;
+	align-items:center;
+	/*grid-auto-flow: column;*/
+	width: 100%;
+	/*grid-auto-columns: auto;*/
+	background-color: rgba(140, 140, 243, 0.3);
+	height:70px;
 }
-.home{
-	padding: 10px;
-	background-color:rgba(245, 0, 0, 0.3);
-	color:blue;
+.navbar div{
+	padding: 20px 20px;
+	text-decoration: none;
+}
+.navbar a{
+	padding: 20px 20px;
+	text-decoration: none;
+}
+.navbar div:hover{
+	background-color: rgba(140, 140, 243, 0.7);
+}
+
+#title{
+	font-weight: bold;
+	padding: 20px;
+	color: rgb(112, 5, 78);
+	border-right: 5px solid rgba(140, 140, 243, 0.1);
 }
 
 .container{

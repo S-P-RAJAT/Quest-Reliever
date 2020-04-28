@@ -1,32 +1,39 @@
-<h1>{{title}}</h1>
+<link rel="stylesheet" type="text/css" href="/description.css">
 
+<div class="navbar">
+<span id="title">{{title}}</span>
 <div>
 <a href = "/" >Home</a>
-</div>
-<p>
+</div></div>
+<div>
 {{!--{{#if anyArray}}--}}
+<div class="poster">
 {{#if Poster}}
 {{#ifvalid Poster}}
 <img src="{{Poster}}"><br>
 {{/ifvalid}}
 {{/if}}
-{{#each data}}
-
-{{#if this}}
-{{#ifvalid this}}
-{{@key}}  :  {{this}}<br>
-{{/ifvalid}}
-{{/if}}
-{{/each}}<br>
-<strong>Ratings:</strong><br>
-Source<br>
-{{#each Ratings}}
-{{#each this}}
-{{#if this}}
-{{this}} 
-{{/if}}
-{{/each}}<br>
-{{/each}}
-
+</div>
+<div class="container">
+	{{#each data}}
+		{{#if this}}
+			{{#ifvalid this}}
+				<div>
+					{{@key}}  :  {{this}}<br>
+				</div>
+			{{/ifvalid}}
+		{{/if}}
+	{{/each}}<br>
+</div>
+<div class="ratings">
+<div><strong>Ratings:</strong></div>
+<br>
+<div class="grid">
+	{{#each Ratings}}
+	<div>{{this.Source}}</div> 
+	<div>{{this.Value}}</div>
+	{{/each}}
+</div>
+</div>
 {{!--{{/if}}--}}
-</p>
+</div>
