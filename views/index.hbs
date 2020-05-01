@@ -4,15 +4,21 @@
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <img src="1.jpg" style="height:60vw;width:100%">
+  <img src="1s.jpg" srcset="1l.jpg 1024w, 1m.jpg 640w, 1s.jpg 400w"
+     sizes="50vw"
+     alt="Baahubali"/>
 </div>
 
 <div class="mySlides fade">
-  <img src="2.jpg" style="height:60vw;width:100%">
+  <img src="2s.jpg" srcset="2l.jpg 1024w, 2m.jpg 640w, 2s.jpg 400w"
+     sizes="50vw"
+     alt="Infinity War"/>
 </div>
 
 <div class="mySlides fade">
-  <img src="3.jpg" style="height:60vw;width:100%">
+  <img src="3s.jpg" srcset="3l.jpg 1024w, 3m.jpg 640w, 3s.jpg 400w"
+     sizes="50vw"
+     alt="KGF"/>
 </div>
 
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -32,50 +38,51 @@
 
   <h3>Search Movies of your interest!</h3>
   <form action="/search" method="GET">
-      <input type="text" class ="search-box" placeholder="Movie name" name="search">
+      <input type="text"  class ="search-box" placeholder="Movie name" name="search" required>
       <input type="submit" id = "submit-button">
   </form>
 </div>
+  <footer>Source: OMDB API</footer>
 <script>
-var no=0;
-delay = 0;
-var slideIndex = 1;
-showSlides(slideIndex);
+  var no=0;
+  delay = 0;
+  var slideIndex = 1;
+  showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-  delay = 5000;
-  no = no - 1;
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-  delay = 5000;
-  no = no - 1;
-}
-
-function showSlides(n) {
-  var i;
-  no =n;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+    delay = 5000;
+    no = no - 1;
   }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+    delay = 5000;
+    no = no - 1;
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-no =0
-function slid(){
-	no = (no%3)+1;
-  	showSlides(slideIndex = no);
-	setTimeout(slid, 5000+delay);
-	delay=0;
-	}
-	slid();
+
+  function showSlides(n) {
+    var i;
+    no =n;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+  }
+  no =0
+  function slid(){
+  	no = (no%3)+1;
+    	showSlides(slideIndex = no);
+  	setTimeout(slid, 5000+delay);
+  	delay=0;
+  	}
+  	slid();
 </script>

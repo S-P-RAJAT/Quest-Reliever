@@ -25,15 +25,17 @@
 		{{/if}}
 	{{/each}}<br>
 </div>
+{{#if Ratings}}
 <div class="ratings">
-<div><strong>Ratings:</strong></div>
-<br>
-<div class="grid">
-	{{#each Ratings}}
-	<div>{{this.Source}}</div> 
-	<div>{{this.Value}}</div>
-	{{/each}}
+	<div><strong>Ratings:</strong></div>
+	<br>
+	<div class="grid">
+		{{#each Ratings}}
+			<div>{{this.Source}}</div> 
+			<div>{{this.Value}}</div>
+		{{/each}}
+	</div>
 </div>
-</div>
+{{/if}}
 {{!--{{/if}}--}}
 </div>

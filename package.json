@@ -1,12 +1,13 @@
 {
-  "name": "new",
+  "name": "Movie App",
   "version": "1.0.0",
-  "description": "",
+  "description": "This gives project is a search engine for movies.",
   "main": "app.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "S P Rajat",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",

@@ -1,18 +1,18 @@
 .navbar{
 	display:flex;
+	flex-wrap: wrap;
 	align-items:center;
 	/*grid-auto-flow: column;*/
 	width: 100%;
 	/*grid-auto-columns: auto;*/
 	background-color: rgba(140, 140, 243, 0.3);
-	height:70px;
+	height:auto;
 }
 .navbar div{
 	padding: 20px 20px;
 	text-decoration: none;
 }
 .navbar a{
-	padding: 20px 20px;
 	text-decoration: none;
 }
 .navbar div:hover{
@@ -38,30 +38,21 @@
 	background-color: #eee;
 }
 .container div img{
-	height: 500px;
+	max-height: 400px;
 	max-width:100%;
+	padding-top:5%;
 }	
 
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 680px){
 		.container{
 			display: grid;
-			grid-column-gap: 2em;
-			/*margin: 0px 5%;*/
-			grid-template-columns: auto auto;
-			
-			/*grid-template-rows: 300px auto 100px 200px;*/
+			grid-template-columns:  repeat(2,1fr);
+		}
 }
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1024px){
 		.container{
 			display: grid;
-			grid-column-gap: 1em;
-			/*margin: 0px 5%;*/
 			grid-template-columns: repeat(3,1fr);
-			
-			/*grid-template-rows: 300px auto 100px 200px;*/
-}
-img{
-	padding-top:5%;
-	
+		}
 }

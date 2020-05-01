@@ -1,10 +1,14 @@
 <link rel="stylesheet" type="text/css" href="search.css">
 <div class="navbar">
-<span id="title">{{title}}</span>
+	<span id="title">{{title}}</span>
+	<div>
+	<a href = "/" >Home</a>
+	</div></div>
 <div>
-<a href = "/" >Home</a>
-</div></div>
-<div>
+{{#ifvalid data.Response}}
+	Sorry :(<br>
+	Movie not Found! Please try other keywords.
+{{/ifvalid}}
 <div class = "container">
 	{{!--{{#if anyArray}}--}}
 
@@ -14,7 +18,7 @@
 		{{#ifvalid Poster}}
 		<img src="{{Poster}}"><br>
 		{{/ifvalid}}
-		Title: <a href="/search/{{Title}}">{{Title}}</a><br>
+		Title: <a href="/search/{{Title}}/{{imdbID}}">{{Title}}</a><br>
 		Year: {{Year}}<br>
 		Type: {{Type}}<br>
 		
