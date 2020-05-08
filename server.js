@@ -30,14 +30,70 @@ var title = "Quest Reliever";
 app.get("/",function(req, res){
     res.render("index",{title: title})
 });
+
 app.get("/search", function(req, res){
+
     var query = req.query.search;
+    console.log("hello");
     var url = "http://www.omdbapi.com/?s="+query+"&apikey=thewdb";
     request(url, function(error, response, body){
         if(!error && response.statusCode == 200) {
             var data = JSON.parse(body);
-            res.render("search",{title: title,data: data,condition: false});
-            createHTML(data);
+
+                if (data.Response = "False"){
+
+                    var url1 = "https://www.googleapis.com/customsearch/v1?key=AIzaSyC6KpyXFnWR9HlGQDNAXPVYwkuwrlQE_o4&cx=002210161127150476775:jxnx4i2huwl&q="+query+" movie";
+                    request(url1, function(error, response, body){
+
+                        if(!error && response.statusCode == 200) {
+                            console.log("False :)")
+                            var s = "";
+                            var str = ""
+                            var gdata = JSON.parse(body);
+                            console.log(gdata);
+
+                            if (gdata.spelling !=undefined){
+                                res.redirect("/search?search=" + gdata.spelling.correctedQuery)
+                                console.log("Query corrected");
+                            }
+                            if (gdata.items !=undefined){
+                               for (var i =0; i<gdata.items.length - 1; i++) {
+                                    s = gdata.items[i].title;
+                                    if (s.includes("Wikipedia")){
+                                        break;
+                                    }
+                                }
+                                for (var i =0; i<s.length; i++) {
+                                    
+                                    if (s[i]=='(' || s[i]==':' || s[i]=='-' || s[i]=='–'){
+                                        break;
+                                    }
+                                    str= str + s[i];
+                                }
+                            
+                                query2 = str.trim();
+                            }
+                            else{
+                                query2 = query;
+                            }
+
+                            url = "http://www.omdbapi.com/?s="+query2+"&apikey=thewdb";
+                            
+                            request(url, function(error, response, body){
+                                if(!error && response.statusCode == 200) {
+                                    data = JSON.parse(body);
+                                    res.render("search",{title: title,data: data,condition: false});
+                                    
+                                    }
+                            });
+
+                        }
+                    });
+                }
+                else{
+                    res.render("search",{title: title,data: data,condition: false});
+                    
+                }
         }
     });
 });
@@ -58,7 +114,6 @@ app.get("/search/:movieName/:movieID", function(req, res){
                 data.Ratings = undefined;
             }
             res.render("description",{title: title,Poster: Poster,Ratings: Ratings,data: data,condition: false});
-            createHTML(data);
         }
     });
 });
@@ -79,15 +134,10 @@ app.get("/search/:movieName", function(req, res){
                 data.Ratings = undefined;
             }
             res.render("description",{title: title,Poster: Poster,Ratings: Ratings,data: data,condition: false});
-            createHTML(data);
+            
         }
     });
 });
-function createHTML(petsData){
-    console.log("testing from our function");
-    console.log(petsData)
-}
-
 
 app.listen(3000, "0.0.0.0", function(){
     console.log("Handlebar App has started!!!");

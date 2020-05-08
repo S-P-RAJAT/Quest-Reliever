@@ -35,20 +35,29 @@
 
 <div class = "container">
   <h1><span class="title"> Quest Reliever </span></h1>
-
   <h3>Search Movies of your interest!</h3>
-  <form action="/search" method="GET">
-      <input type="text"  class ="search-box" placeholder="Movie name" name="search" required>
+
+  <form action="/search" onsubmit="process()" method="GET">
+  		<input type="text" class = "hidden-box" name="search" hidden>
+      <input type="text"  class ="search-box" placeholder="Movie name" required>
       <input type="submit" id = "submit-button">
   </form>
 </div>
-  <footer>Source: OMDB API</footer>
+  <footer>Source: OMDB API and Google API</footer>
 <script>
   var no=0;
   delay = 0;
   var slideIndex = 1;
   showSlides(slideIndex);
 
+
+  function process() {
+  	var d =document.getElementsByClassName("search-box");
+  	var l =document.getElementsByClassName("hidden-box");
+  	s= d[0].value;
+  	l[0].value = s.trim().replace(/ +(?= )/g,'');
+
+  }
   function plusSlides(n) {
     showSlides(slideIndex += n);
     delay = 5000;

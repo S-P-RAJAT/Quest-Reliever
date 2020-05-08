@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="search.css">
+<link rel="stylesheet" type="text/css" href="/search.css">
 <div class="navbar">
 	<span id="title">{{title}}</span>
 	<div>
@@ -7,7 +7,9 @@
 <div>
 {{#ifvalid data.Response}}
 	Sorry :(<br>
-	Movie not Found! Please try other keywords.
+	Movie not Found! Please try other keywords or Search in the web below: 
+	<script async src="https://cse.google.com/cse.js?cx=002210161127150476775:jxnx4i2huwl"></script>
+<div class="gcse-search"></div>
 {{/ifvalid}}
 <div class = "container">
 	{{!--{{#if anyArray}}--}}
@@ -16,7 +18,7 @@
 	{{#each this}}
 	<div>
 		{{#ifvalid Poster}}
-		<img src="{{Poster}}"><br>
+		<a href="/search/{{Title}}/{{imdbID}}"><img src="{{Poster}}"></a><br>
 		{{/ifvalid}}
 		Title: <a href="/search/{{Title}}/{{imdbID}}">{{Title}}</a><br>
 		Year: {{Year}}<br>

@@ -56,6 +56,7 @@ body{
 	background-color: #eee;
 }
 .ratings{
+	margin-top: 1.5em;
 	background-color:rgba(140, 140, 243, 0.3);
 	padding: 0.4em;
 }
