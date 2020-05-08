@@ -1,5 +1,5 @@
 {
-  "name": "movie_app",
+  "name": "quest_reliever",
   "version": "1.0.0",
   "description": "This gives project is a search engine for movies.",
   "main": "server.js",

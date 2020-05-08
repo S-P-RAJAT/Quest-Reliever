@@ -139,6 +139,7 @@ app.get("/search/:movieName", function(req, res){
     });
 });
 
-app.listen(3000, "0.0.0.0", function(){
-    console.log("Handlebar App has started!!!");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}...`);
 });
