@@ -4,7 +4,6 @@ var request = require("request");
 var Handlebars = require("hbs");
 
 Handlebars.registerHelper("ifvalid", function(conditional,options) {
-    console.log(options.fn(this));
   if ((conditional == "N/A" || conditional == "True")) {
       return options.inverse(this);
     } else {
@@ -30,15 +29,21 @@ var title = "Quest Reliever";
 app.get("/",function(req, res){
     res.render("index",{title: title})
 });
-
+function format(str){
+	str = str.replace(/\%/g,"%25");
+    str = str.replace(/\ /g,"%20");
+    return str
+}
+Handlebars.registerHelper("format", function(title) {
+  return format(title);
+});
 app.get("/search", function(req, res){
 
     var query = req.query.search;
-    console.log("hello");
+    //console.log("hello");
     var url = "http://www.omdbapi.com/?s="+query+"&apikey=thewdb";
-    url = url.replace(/\%/g,"%25");
-    url = url.replace(/\ /g,"%20");
-    console.log(url);
+    url = format(url);
+    //console.log(url);
     request(url, function(error, response, body){
         if(!error && response.statusCode == 200) {
             var data = JSON.parse(body);
@@ -49,40 +54,36 @@ app.get("/search", function(req, res){
                     request(url1, function(error, response, body){
 
                         if(!error && response.statusCode == 200) {
-                            console.log("False :)")
+                            //console.log("False :)")
                             var s = "";
-                            var str = ""
+                            var str = "";
+                            var query2 = query;
                             var gdata = JSON.parse(body);
-                            console.log(gdata);
+                            //console.log(gdata);
 
                             if (gdata.spelling !=undefined){
                                 res.redirect("/search?search=" + gdata.spelling.correctedQuery)
-                                console.log("Query corrected");
+                                //console.log("Query corrected");
                             }
                             if (gdata.items !=undefined){
                                for (var i =0; i<gdata.items.length - 1; i++) {
                                     s = gdata.items[i].title;
                                     if (s.includes("Wikipedia")){
+                                        
+                                        for (var i =0; i<s.length; i++) {
+		                                    if (s[i]=='(' || s[i]==':' || s[i]=='-' || s[i]=='–'){
+		                                        break;
+		                                    }
+		                                    str= str + s[i];
+		                                }
+		                                query2 = str.trim();
                                         break;
                                     }
                                 }
-                                for (var i =0; i<s.length; i++) {
-                                    
-                                    if (s[i]=='(' || s[i]==':' || s[i]=='-' || s[i]=='–'){
-                                        break;
-                                    }
-                                    str= str + s[i];
-                                }
-                            
-                                query2 = str.trim();
-                            }
-                            else{
-                                query2 = query;
                             }
 
                             url = "http://www.omdbapi.com/?s="+query2+"&apikey=thewdb";
-                            url = url.replace(/\%/g,"%25");
-    						url = url.replace(/\ /g,"%20");
+                            url = format(url);
                             request(url, function(error, response, body){
                                 if(!error && response.statusCode == 200) {
                                     data = JSON.parse(body);
@@ -123,6 +124,7 @@ app.get("/search/:movieName/:movieID", function(req, res){
 });
 app.get("/search/:movieName", function(req, res){
     var url = "http://www.omdbapi.com/?t="+req.params["movieName"]+"&apikey=thewdb";
+	url = format(url);
     request(url, function(error, response, body){
         if(!error && response.statusCode == 200) {
             var Poster = "";

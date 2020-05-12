@@ -18,9 +18,9 @@
 	{{#each this}}
 	<div>
 		{{#ifvalid Poster}}
-		<a href="/search/{{Title}}/{{imdbID}}"><img src="{{Poster}}"></a><br>
+		<a href="/search/{{format Title}}/{{imdbID}}"><img src="{{Poster}}"></a><br>
 		{{/ifvalid}}
-		Title: <a href="/search/{{Title}}/{{imdbID}}">{{Title}}</a><br>
+		Title: <a href="/search/{{format Title}}/{{imdbID}}">{{Title}}</a><br>
 		Year: {{Year}}<br>
 		Type: {{Type}}<br>
 		
