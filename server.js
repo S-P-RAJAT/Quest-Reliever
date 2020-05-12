@@ -81,7 +81,8 @@ app.get("/search", function(req, res){
                             }
 
                             url = "http://www.omdbapi.com/?s="+query2+"&apikey=thewdb";
-                            
+                            url = url.replace(/\%/g,"%25");
+    						url = url.replace(/\ /g,"%20");
                             request(url, function(error, response, body){
                                 if(!error && response.statusCode == 200) {
                                     data = JSON.parse(body);
