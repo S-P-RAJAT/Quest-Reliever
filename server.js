@@ -36,11 +36,14 @@ app.get("/search", function(req, res){
     var query = req.query.search;
     console.log("hello");
     var url = "http://www.omdbapi.com/?s="+query+"&apikey=thewdb";
+    url = url.replace(/\%/g,"%25");
+    url = url.replace(/\ /g,"%20");
+    console.log(url);
     request(url, function(error, response, body){
         if(!error && response.statusCode == 200) {
             var data = JSON.parse(body);
 
-                if (data.Response = "False"){
+                if (data.Response == "False"){
 
                     var url1 = "https://www.googleapis.com/customsearch/v1?key=AIzaSyC6KpyXFnWR9HlGQDNAXPVYwkuwrlQE_o4&cx=002210161127150476775:jxnx4i2huwl&q="+query+" movie";
                     request(url1, function(error, response, body){
